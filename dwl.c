@@ -336,6 +336,7 @@ static void pointerfocus(Client *c, struct wlr_surface *surface,
 static void printstatus(void);
 static void powermgrsetmode(struct wl_listener *listener, void *data);
 static void quit(const Arg *arg);
+static void restartdwl(const Arg *arg);
 static void rendermon(struct wl_listener *listener, void *data);
 static void requestdecorationmode(struct wl_listener *listener, void *data);
 static void requeststartdrag(struct wl_listener *listener, void *data);
@@ -2370,6 +2371,15 @@ void
 quit(const Arg *arg)
 {
 	wl_display_terminate(dpy);
+}
+
+void
+restartdwl(const Arg *arg)
+{
+    FILE *fp;
+    fp = fopen ("/tmp/restart_dwl", "w");
+    fclose(fp);
+    quit(0);
 }
 
 void

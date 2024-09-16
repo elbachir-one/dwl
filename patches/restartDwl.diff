@@ -1,0 +1,52 @@
+From 8cee0841d0abfe783a2668bf49523c094b77a055 Mon Sep 17 00:00:00 2001
+From: krypek <115574014+krypciak@users.noreply.github.com>
+Date: Thu, 27 Oct 2022 20:09:27 +0200
+Subject: [PATCH] Add restartdwl function
+
+---
+ config.def.h |  3 +++
+ dwl.c        | 10 ++++++++++
+ 2 files changed, 13 insertions(+)
+
+diff --git a/config.def.h b/config.def.h
+index ec1f0528..2f484541 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -104,6 +104,9 @@ static const char *menucmd[] = { "bemenu-run", NULL };
+ static const Key keys[] = {
+ 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
+ 	/* modifier                  key                 function        argument */
++
++	{ MODKEY|WLR_MODIFIER_SHIFT|WLR_MODIFIER_CTRL, XKB_KEY_M,        restartdwl,     {0} },
++
+ 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
+ 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
+ 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
+diff --git a/dwl.c b/dwl.c
+index a80de054..70c1da63 100644
+--- a/dwl.c
++++ b/dwl.c
+@@ -260,6 +260,7 @@ static void pointerfocus(Client *c, struct wlr_surface *surface,
+ static void printstatus(void);
+ static void quit(const Arg *arg);
+ static void quitsignal(int signo);
++static void restartdwl(const Arg *arg);
+ static void rendermon(struct wl_listener *listener, void *data);
+ static void requeststartdrag(struct wl_listener *listener, void *data);
+ static void resize(Client *c, struct wlr_box geo, int interact);
+@@ -1781,6 +1782,15 @@ quitsignal(int signo)
+ 	quit(NULL);
+ }
+
++void
++restartdwl(const Arg *arg)
++{
++    FILE *fp;
++    fp = fopen ("/tmp/restart_dwl", "w");
++    fclose(fp);
++    quit(0);
++}
++
+ void
+ rendermon(struct wl_listener *listener, void *data)
+ {
