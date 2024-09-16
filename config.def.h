@@ -22,9 +22,9 @@ static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f};
 static int log_level = WLR_ERROR;
 
 static const char *const autostart[] = {
-	"wbg", "$HOME/wall/anime_landscape.jpg", NULL,
+	"wbg", "$HOME/wall/city_blue.jpeg", NULL,
 	"foot", NULL,
-	"wlr-randr", "--output", "Virtual-1", "--mode", "1920x1080", NULL,
+//	"wlr-randr", "--output", "Virtual-1", "--mode", "1920x1080", NULL,
 	NULL
 };
 
