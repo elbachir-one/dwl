@@ -1,76 +1,78 @@
 # dwl - dwm for Wayland
 
-## This is My Fork of DWL The Wayland Compoistor With Patches
+## This is My Fork of DWL, the Wayland Compositor with Patches
 
 ![DWL](dwl.jpg)
 
-There are a few dependencies that DWL needs in order to run on your system.
+DWL has a few dependencies that need to be installed for it to run on your
+system.
 
-### Void Linux
+### Dependencies
 
-`sudo xbps-install -S wlroots wlroots-devel wayland-protocols wbg wlr-randr xdg-desktop-portal-wlr`
+#### Void Linux
 
-### Arch Linux
+    
+    
+    sudo xbps-install -S wlroots wlroots-devel wayland-protocols wbg wlr-randr xdg-desktop-portal-wlr
 
-`sudo pacman -S wlroots wayland-protocols wbg wlr-randr xdg-desktop-portal-wlr`
+#### Arch Linux
 
-The background image is set with wbg.
+    
+    
+    sudo pacman -S wlroots wayland-protocols wbg wlr-randr xdg-desktop-portal-wlr
 
-If you have numerous screens, you can configure them using wlr-randr.
+The background image can be set using `wbg`. If you have multiple screens, you
+can configure them using `wlr-randr`.
 
 ### Patches
 
-- Allways Center
-- Attach Bottom
-- Auto Start
-- Per Tag
-- Restart dwl
-- Swallow
-- Vanity gaps
+  * [Always Center](patches/alwayscenter.diff)
+  * [Attach Bottom](patches/attachbottom.diff)
+  * [Auto Start](patches/autostart.diff)
+  * [Per Tag](patches/pertag.diff)
+  * [Restart Dwl](patches/restartDwl.diff)
+  * [Swallow](patches/swallow.diff)
+  * [Vanity Gaps](patches/vanitygaps.diff)
 
 ### Installing DWL
 
-In order to install dwl on your system.
-
-1- clone the repo `git clone https://github.com/elbachir-one/dwl`.
-
-2- cd in to the cloned repo `cd dwl/` .
-
-3- run `make` .
-
-4- run `sudo make clean install` .
-
-After that, you can reboot your system by typing dwl in the tty.
-
-NOTE: Since DWL doesn't include a bar by default,
-you'll need to pick one you like and set it up on your own.
-One more thing: you need to install a terminal emulator and a program launcher,
-such as bmenu or dmenu for Wayland, which is the one I use.
-
-### Installing Dmenu-Wayland
-
-Install dependencies: meson and ninja
+To install DWL on your system:
 
 ```bash
-git clone https://github.com/nyyManni/dmenu-wayland.git
-cd dmenu-wayland
-mkdir build && meson build
-ninja -C build
-sudo ninja -C build install
+git clone --depth=1 https://github.com/elbachir-one/dwl
+cd dwl/
+make
+sudo make clean install
 ```
+
+After installation, you can reboot your system and start DWL by typing `dwl`
+in the TTY.
+
+**Note:** DWL does not include a bar by default. You will need to choose and
+set up a bar on your own. Additionally, you will need to install a terminal
+emulator and a program launcher, such as `bmenu` or `dmenu` for Wayland.
+
+### Installing dmenu-wayland
+
+To install `dmenu-wayland`, first install the dependencies: `meson` and
+`ninja`.
+
+    
+    
+    git clone https://github.com/nyyManni/dmenu-wayland.git
+    cd dmenu-wayland
+    mkdir build && meson build
+    ninja -C build
+    sudo ninja -C build install
 
 ### Keybindings
 
-Modkey = Alt |
+  * **Modkey = Alt**
+  * `Modkey + p` → Launch `dmenu-wayland`
+  * `Modkey + Shift + Return` → Start the terminal (e.g., alacritty)
+  * `Modkey + Shift + q` → Restart DWL
+  * `Modkey + Shift + c` → Close programs
 
-Modkey + p -> to launch dmenu-wayland |
-
-Modkey + Shift + Return -> start the terminal (alacritty) |
-
-Modkey + Shift + q -> restart dwl |
-
-Modkey + Shift + c -> close programes |
-
-NOTE: Feel free to change this configuration however you want.
+**Note:** Feel free to customize this configuration to suit your preferences.
 
 ### Thank You
